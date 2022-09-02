@@ -15,8 +15,8 @@ const Counter = () => {
 
 	//allows to connect to individual state values within our redux store
 	//automatically subscribes us to the redux store
-	const counter = useSelector((state) => state.counter);
-	const show = useSelector((state) => state.showCounter);
+	const counter = useSelector((state) => state.counter.counter);
+	const show = useSelector((state) => state.counter.showCounter);
 
 	const incrementHandler = () => {
 		//use the dispatch function to dispatch a new action object

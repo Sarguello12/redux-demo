@@ -2,12 +2,12 @@
 import { createSlice, configureStore } from "@reduxjs/toolkit";
 
 //holds all of the the initial state values we will need throughout the program
-const initialState = { counter: 0, showCounter: true };
+const initialCounterState = { counter: 0, showCounter: true };
 
 //managing state using a slice created from the toolkit
 const counterSlice = createSlice({
 	name: "counter",
-	initialState: initialState,
+	initialState: initialCounterState,
 	reducers: {
 		//it seems like we can mutate state here but only because redux toolkit uses immer in the background to automatically clone and reassign state values
 		increment(state) {
@@ -21,6 +21,23 @@ const counterSlice = createSlice({
 		},
 		toggleCounter(state) {
 			state.showCounter = !state.showCounter;
+		},
+	},
+});
+
+const initialAuthState = {
+	isAuthenticated: false,
+};
+
+const authSlice = createSlice({
+	name: "authentication",
+	initialState: initialAuthState,
+	reducers: {
+		login(state) {
+			state.isAuthenticated = true;
+		},
+		logout(state) {
+			state.isAuthenticated = false;
 		},
 	},
 });
@@ -68,8 +85,13 @@ const counterSlice = createSlice({
 // const store = createStore(counterReducer);
 
 const store = configureStore({
-	reducer: counterSlice.reducer,
+	reducer: {
+		counter: counterSlice.reducer,
+		auth: authSlice.reducer,
+	},
 });
 
 export const counterActions = counterSlice.actions;
+export const authActions = authSlice.actions;
+
 export default store;
