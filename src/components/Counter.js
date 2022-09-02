@@ -7,7 +7,7 @@ import { useSelector, useDispatch } from "react-redux";
 import classes from "./Counter.module.css";
 
 //import our action methods
-import { counterActions } from "../store/index";
+import { counterActions } from "../store/counter";
 
 const Counter = () => {
 	//returns a function that we can dispatch against our redux store
